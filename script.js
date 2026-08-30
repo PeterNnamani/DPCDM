@@ -5,7 +5,6 @@ if (yearNode) {
     yearNode.textContent = new Date().getFullYear();
 }
 
-const amountButtons = document.querySelectorAll('.amount');
 const donateButton = document.querySelector('.donate-btn');
 const modal = document.getElementById('paystackModal');
 const donationForm = document.getElementById('donationForm');
@@ -28,15 +27,11 @@ function setModalState(isOpen) {
     document.body.style.overflow = isOpen ? 'hidden' : '';
 }
 
-function getSelectedAmount() {
-    const selected = document.querySelector('.amount.selected');
-    return selected ? Number(selected.dataset.amount) : null;
-}
-
 function openDonationModal() {
     if (!modal) return;
-    const selectedAmount = getSelectedAmount();
-    if (amountInput) amountInput.value = selectedAmount ?? '';
+    if (amountInput && !amountInput.value) {
+        amountInput.value = '';
+    }
     if (currencyInput) {
         currencyInput.value = normalizeCurrency(currencyInput.value);
     }
@@ -46,15 +41,6 @@ function openDonationModal() {
 function closeDonationModal() {
     setModalState(false);
 }
-
-amountButtons.forEach((button) => {
-    button.addEventListener('click', () => {
-        amountButtons.forEach((btn) => btn.classList.remove('selected'));
-        button.classList.add('selected');
-        const value = Number(button.dataset.amount || 20);
-        if (amountInput) amountInput.value = value;
-    });
-});
 
 if (donateButton) {
     donateButton.addEventListener('click', openDonationModal);
@@ -149,7 +135,7 @@ if (donationForm) {
 }
 
 if (amountInput) {
-    amountInput.value = getSelectedAmount() ?? '';
+    amountInput.value = '';
 }
 
 if (currencyInput) {
