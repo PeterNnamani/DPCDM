@@ -30,13 +30,13 @@ function setModalState(isOpen) {
 
 function getSelectedAmount() {
     const selected = document.querySelector('.amount.selected');
-    return selected ? Number(selected.dataset.amount) : 20;
+    return selected ? Number(selected.dataset.amount) : null;
 }
 
 function openDonationModal() {
     if (!modal) return;
     const selectedAmount = getSelectedAmount();
-    if (amountInput) amountInput.value = selectedAmount;
+    if (amountInput) amountInput.value = selectedAmount ?? '';
     if (currencyInput) {
         currencyInput.value = normalizeCurrency(currencyInput.value);
     }
@@ -149,7 +149,7 @@ if (donationForm) {
 }
 
 if (amountInput) {
-    amountInput.value = getSelectedAmount();
+    amountInput.value = getSelectedAmount() ?? '';
 }
 
 if (currencyInput) {
