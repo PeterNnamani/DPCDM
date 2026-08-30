@@ -13,6 +13,12 @@ const amountInput = document.getElementById('donationAmount');
 const currencyInput = document.getElementById('currencyCode');
 const cancelDonation = document.getElementById('cancelDonation');
 const closeModalButton = document.querySelector('.close-modal');
+const supportedCurrencies = ['NGN', 'USD', 'GHS', 'KES', 'ZAR'];
+
+function normalizeCurrency(value) {
+    const normalized = (value || 'NGN').toUpperCase().trim();
+    return supportedCurrencies.includes(normalized) ? normalized : 'NGN';
+}
 
 function setModalState(isOpen) {
     if (!modal) return;
@@ -31,7 +37,9 @@ function openDonationModal() {
     if (!modal) return;
     const selectedAmount = getSelectedAmount();
     if (amountInput) amountInput.value = selectedAmount;
-    if (currencyInput) currencyInput.value = currencyInput.value || 'USD';
+    if (currencyInput) {
+        currencyInput.value = normalizeCurrency(currencyInput.value);
+    }
     setModalState(true);
 }
 
@@ -76,7 +84,8 @@ if (donationForm) {
         const firstName = document.getElementById('firstName')?.value.trim() || '';
         const lastName = document.getElementById('lastName')?.value.trim() || '';
         const amount = Number(amountInput?.value || 0);
-        const currency = (currencyInput?.value || 'USD').toUpperCase();
+        const rawCurrency = currencyInput?.value || 'NGN';
+        const currency = normalizeCurrency(rawCurrency);
 
         if (!email || !email.includes('@')) {
             alert('Please enter a valid email address.');
@@ -85,6 +94,11 @@ if (donationForm) {
 
         if (!amount || amount <= 0) {
             alert('Please select a valid donation amount greater than 0.');
+            return;
+        }
+
+        if (!supportedCurrencies.includes(currency)) {
+            alert('This merchant account does not support that currency. Please choose from the available options and try again.');
             return;
         }
 
@@ -139,5 +153,5 @@ if (amountInput) {
 }
 
 if (currencyInput) {
-    currencyInput.value = 'USD';
+    currencyInput.value = 'NGN';
 }
