@@ -14,6 +14,14 @@ const currencyInput = document.getElementById('currencyCode');
 const cancelDonation = document.getElementById('cancelDonation');
 const closeModalButton = document.querySelector('.close-modal');
 
+function setModalState(isOpen) {
+    if (!modal) return;
+    modal.classList.toggle('active', isOpen);
+    modal.inert = !isOpen;
+    modal.setAttribute('aria-hidden', String(!isOpen));
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+}
+
 function getSelectedAmount() {
     const selected = document.querySelector('.amount.selected');
     return selected ? Number(selected.dataset.amount) : 20;
@@ -24,14 +32,11 @@ function openDonationModal() {
     const selectedAmount = getSelectedAmount();
     if (amountInput) amountInput.value = selectedAmount;
     if (currencyInput) currencyInput.value = currencyInput.value || 'USD';
-    modal.classList.add('active');
-    modal.setAttribute('aria-hidden', 'false');
+    setModalState(true);
 }
 
 function closeDonationModal() {
-    if (!modal) return;
-    modal.classList.remove('active');
-    modal.setAttribute('aria-hidden', 'true');
+    setModalState(false);
 }
 
 amountButtons.forEach((button) => {
@@ -83,8 +88,8 @@ if (donationForm) {
             return;
         }
 
-        if (!PAYSTACK_PUBLIC_KEY || PAYSTACK_PUBLIC_KEY === 'PASTE_YOUR_PAYSTACK_PUBLIC_KEY_HERE') {
-            alert('Please paste your Paystack public key in script.js before testing the payment flow.');
+        if (!PAYSTACK_PUBLIC_KEY || PAYSTACK_PUBLIC_KEY === 'PASTE_YOUR_PAYSTACK_PUBLIC_KEY_HERE' || !PAYSTACK_PUBLIC_KEY.startsWith('pk_')) {
+            alert('Please paste a valid Paystack public key starting with pk_ in script.js before testing the payment flow.');
             return;
         }
 
