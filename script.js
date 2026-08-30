@@ -83,7 +83,7 @@ if (donationForm) {
             return;
         }
 
-        if (!PAYSTACK_PUBLIC_KEY || PAYSTACK_PUBLIC_KEY === 'pk_live_329fce6c40cb62b54ce3ccd2c2c2b72a01c2cee3') {
+        if (!PAYSTACK_PUBLIC_KEY || PAYSTACK_PUBLIC_KEY === 'PASTE_YOUR_PAYSTACK_PUBLIC_KEY_HERE') {
             alert('Please paste your Paystack public key in script.js before testing the payment flow.');
             return;
         }
