@@ -1,4 +1,4 @@
-const PAYSTACK_PUBLIC_KEY = 'PASTE_YOUR_PAYSTACK_PUBLIC_KEY_HERE';
+const PAYSTACK_PUBLIC_KEY = 'pk_live_329fce6c40cb62b54ce3ccd2c2c2b72a01c2cee3';
 
 const yearNode = document.getElementById('year');
 if (yearNode) {
@@ -88,7 +88,7 @@ if (donationForm) {
             return;
         }
 
-        if (!PAYSTACK_PUBLIC_KEY || PAYSTACK_PUBLIC_KEY === 'PASTE_YOUR_PAYSTACK_PUBLIC_KEY_HERE' || !PAYSTACK_PUBLIC_KEY.startsWith('pk_')) {
+        if (!PAYSTACK_PUBLIC_KEY || PAYSTACK_PUBLIC_KEY === 'pk_live_329fce6c40cb62b54ce3ccd2c2c2b72a01c2cee3' || !PAYSTACK_PUBLIC_KEY.startsWith('pk_')) {
             alert('Please paste a valid Paystack public key starting with pk_ in script.js before testing the payment flow.');
             return;
         }
