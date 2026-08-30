@@ -179,14 +179,14 @@
                 </div>
 
                 <div class="donation-box" aria-label="Donation amount">
-                    <label class="amount-entry">
-                        <span>Enter donation amount</span>
+                    <div class="amount-entry">
+                        <span class="amount-label">Enter donation amount</span>
                         <div class="amount-input-wrap">
                             <span class="currency-symbol">₦</span>
                             <input type="number" id="donationAmount" name="donationAmount" min="1" step="0.01"
                                 placeholder="Enter amount" required />
                         </div>
-                    </label>
+                    </div>
                     <button class="btn btn-primary donate-btn" type="button">Donate Today</button>
                 </div>
             </div>
@@ -219,14 +219,13 @@
 
                 <div class="field-row two-col">
                     <label>
-                        <span>Amount</span>
-                        <input type="number" id="donationAmount" name="donationAmount" min="1" step="0.01"
-                            placeholder="Enter amount" required />
-                    </label>
-                    <label>
                         <span>Currency</span>
                         <input type="text" id="currencyCode" name="currencyCode" value="NGN" readonly
                             aria-readonly="true" />
+                    </label>
+                    <label>
+                        <span>Amount entered</span>
+                        <input type="text" value="Custom amount" readonly aria-readonly="true" />
                     </label>
                 </div>
 
