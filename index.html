@@ -180,10 +180,10 @@
 
                 <div class="donation-box" aria-label="Donation amounts">
                     <div class="amounts">
-                        <button type="button" class="amount selected" data-amount="20">$20</button>
-                        <button type="button" class="amount" data-amount="50">$50</button>
-                        <button type="button" class="amount" data-amount="100">$100</button>
-                        <button type="button" class="amount" data-amount="250">$250</button>
+                        <button type="button" class="amount selected" data-amount="20">₦20</button>
+                        <button type="button" class="amount" data-amount="50">₦50</button>
+                        <button type="button" class="amount" data-amount="100">₦100</button>
+                        <button type="button" class="amount" data-amount="250">₦250</button>
                     </div>
                     <button class="btn btn-primary donate-btn" type="button">Donate Today</button>
                 </div>
@@ -223,13 +223,7 @@
                     </label>
                     <label>
                         <span>Currency</span>
-                        <select id="currencyCode" name="currencyCode" required>
-                            <option value="NGN">NGN - Nigerian Naira</option>
-                            <option value="USD">USD - US Dollar</option>
-                            <option value="GHS">GHS - Ghanaian Cedi</option>
-                            <option value="KES">KES - Kenyan Shilling</option>
-                            <option value="ZAR">ZAR - South African Rand</option>
-                        </select>
+                        <input type="text" id="currencyCode" name="currencyCode" value="NGN" readonly aria-readonly="true" />
                     </label>
                 </div>
 

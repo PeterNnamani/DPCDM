@@ -13,7 +13,7 @@ const amountInput = document.getElementById('donationAmount');
 const currencyInput = document.getElementById('currencyCode');
 const cancelDonation = document.getElementById('cancelDonation');
 const closeModalButton = document.querySelector('.close-modal');
-const supportedCurrencies = ['NGN', 'USD', 'GHS', 'KES', 'ZAR'];
+const supportedCurrencies = ['NGN'];
 
 function normalizeCurrency(value) {
     const normalized = (value || 'NGN').toUpperCase().trim();
