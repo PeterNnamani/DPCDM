@@ -141,3 +141,42 @@ if (amountInput) {
 if (currencyInput) {
     currencyInput.value = 'NGN';
 }
+
+const galleryItems = Array.from(document.querySelectorAll('.gallery-item'));
+const galleryPrev = document.querySelector('.gallery-prev');
+const galleryNext = document.querySelector('.gallery-next');
+
+if (galleryItems.length > 0) {
+    let galleryIndex = 0;
+
+    function renderGallery(index) {
+        galleryItems.forEach((item, i) => {
+            item.classList.remove('active', 'prev', 'next');
+
+            const diff = (i - index + galleryItems.length) % galleryItems.length;
+
+            if (diff === 0) {
+                item.classList.add('active');
+            } else if (diff === 1) {
+                item.classList.add('next');
+            } else if (diff === galleryItems.length - 1) {
+                item.classList.add('prev');
+            }
+        });
+    }
+
+    function goToGallery(direction) {
+        galleryIndex = (galleryIndex + direction + galleryItems.length) % galleryItems.length;
+        renderGallery(galleryIndex);
+    }
+
+    if (galleryPrev) {
+        galleryPrev.addEventListener('click', () => goToGallery(-1));
+    }
+
+    if (galleryNext) {
+        galleryNext.addEventListener('click', () => goToGallery(1));
+    }
+
+    renderGallery(galleryIndex);
+}
