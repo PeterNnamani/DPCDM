@@ -1,4 +1,4 @@
-const PAYSTACK_PUBLIC_KEY = 'pk_live_329fce6c40cb62b54ce3ccd2c2c2b72a01c2cee3';
+const PAYSTACK_PUBLIC_KEY = 'pk_test_b2b96677589473d60b1a57c9b0ed6923973ebe6c';
 
 const yearNode = document.getElementById('year');
 if (yearNode) {
